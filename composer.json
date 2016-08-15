@@ -1,0 +1,16 @@
+{
+    "name": "rende11/web-app",
+    "description": "Project from course Web-Development on PHP Hexlet.io",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rende11",
+            "email": "artamonovn@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": 
+    {
+            "squizlabs/php_codesniffer": "2.*"
+    }
+}
