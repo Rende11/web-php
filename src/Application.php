@@ -15,7 +15,7 @@ class Application
         $this->append('POST', $path, $func);
     }
         
-    public function getRoutes ()
+    public function getRoutes()
     {
         return $this->routes;
     }

@@ -3,13 +3,11 @@ namespace App;
 
 require_once __DIR__.'/../vendor/autoload.php';
 
-use function App\Template\render;
+use function App\Renderer\renderer;
 
 $app = new Application();
 
-$template = __DIR__.'/templates/index.phtml';
-
-$html = render($template, ['site' => "example",
+$html = renderer('index', ['site' => "example",
                             'map' => ["1", "2", "3"]]);
 
 $app->get('/test', function () use ($html) {
