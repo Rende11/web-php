@@ -1,12 +1,19 @@
 <?php
 namespace App;
 
-require_once 'Application.php';
+require_once __DIR__.'/../vendor/autoload.php';
+
+use function App\Template\render;
 
 $app = new Application();
 
-$app->get('/test', function () {
-    return 'Hello GET';
+$template = __DIR__.'/templates/index.phtml';
+
+$html = render($template, ['site' => "example",
+                            'map' => ["1", "2", "3"]]);
+
+$app->get('/test', function () use ($html) {
+    return $html;
 });
 
 $app->post('/test', function () {

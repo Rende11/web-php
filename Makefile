@@ -2,7 +2,7 @@ static:
 	php -S localhost:3000
 
 dynamic:
-	php -S localhost:3000 index.php
+	php -S localhost:3000 src/index.php
 
 lint:
 	composer exec 'phpcs  --standard=PSR2 src'

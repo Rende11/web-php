@@ -15,11 +15,17 @@ class Application
         $this->append('POST', $path, $func);
     }
         
+    public function getRoutes ()
+    {
+        return $this->routes;
+    }
+    
     private function append($method, $route, $handler)
     {
         $this->routes[] = [$method, $route, $handler];
     }
-        
+    
+    
     public function run()
     {
         $url = $_SERVER['REQUEST_URI'];

@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<h1> Site <?= $site ?> </h1>
+
+<?php if(!empty($map)) : ?>
+    <ul>
+        <?php foreach ($map as $item) : ?>
+            <li>
+                <?= $item ?>
+            </li>
+        <?php endforeach ?>
+    </ul>
+<?php endif ?>
