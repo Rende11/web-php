@@ -7,11 +7,16 @@ use function App\Renderer\renderer;
 
 $app = new Application();
 
-$html = renderer('index', ['site' => "example",
+$test = renderer('index', ['site' => "example",
                             'map' => ["1", "2", "3"]]);
+$buffer = renderer('buffer');
 
-$app->get('/test', function () use ($html) {
-    return $html;
+$app->get('/test', function () use ($test) {
+    return $test;
+});
+
+$app->get('/buffer', function () use ($buffer) {
+    return $buffer;
 });
 
 $app->post('/test', function () {
