@@ -11,11 +11,22 @@ $test = renderer('index', ['site' => "example",
                             'map' => ["1", "2", "3"]]);
 $buffer = renderer('buffer');
 
-$app->get('/test', function () use ($test) {
+$exampleData = [
+    ['Languges' => ['PHP', 'JS']],
+    ['Tools' => ['Ansible', 'Doker']]
+];
+
+$app->get('/test', function ($queryParams) use ($test) {
     return $test;
 });
 
-$app->get('/buffer', function () use ($buffer) {
+$app->get('/example', function ($queryParams) use ($exampleData) {
+    if(isset($queryParams['data'])) {
+        return json_encode($exampleData);
+    }
+});
+
+$app->get('/buffer', function ($queryParams) use ($buffer) {
     return $buffer;
 });
 

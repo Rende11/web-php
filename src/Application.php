@@ -35,7 +35,7 @@ class Application
             list($method, $path, $handler) = $value;
             $quotedRoute = preg_quote($path, '/');
             if ($method == $requestMethod && preg_match("/^$quotedRoute/i", $url)) {
-                echo $handler();
+                echo $handler($_GET);
             }
         }
     }
