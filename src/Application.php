@@ -15,11 +15,7 @@ class Application
         $this->append('POST', $path, $func);
     }
         
-    public function getRoutes()
-    {
-        return $this->routes;
-    }
-    
+
     private function append($method, $route, $handler)
     {
         $this->routes[] = [$method, $route, $handler];
@@ -33,9 +29,13 @@ class Application
                    
         foreach ($this->routes as $value) {
             list($method, $path, $handler) = $value;
-            $quotedRoute = preg_quote($path, '/');
-            if ($method == $requestMethod && preg_match("/^$quotedRoute/i", $url)) {
-                echo $handler($_GET);
+            $quotedRoute = str_replace('/', '\/', $path);
+            $matches = [];
+            if ($method == $requestMethod && preg_match("/^$quotedRoute/i", $url, $matches)) {
+                $arguments = array_filter($matches, function ($key) {
+                    return !is_numeric($key);
+                }, ARRAY_FILTER_USE_KEY);
+                echo $handler($_GET, $arguments);
             }
         }
     }
