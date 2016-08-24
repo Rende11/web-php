@@ -33,6 +33,10 @@ $app->get('/users/(?P<id>\d+)', function ($queryParams, $arguments) {
     return json_encode($arguments);
 });
 
+$app->get('/players/:playerId/params/:lvl', function ($queryParams, $arguments) {
+    return json_encode($arguments);
+});
+
 $app->get('/buffer', function ($queryParams) use ($buffer) {
     return $buffer;
 });

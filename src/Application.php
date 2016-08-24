@@ -18,9 +18,23 @@ class Application
 
     private function append($method, $route, $handler)
     {
-        $this->routes[] = [$method, $route, $handler];
+        $updatedRoute = $this->updateRoute($route);
+        $this->routes[] = [$method, $updatedRoute, $handler];
     }
     
+    private function updateRoute($route)
+    {
+        $updateRoute = $route;
+        $pattern = "/:([^\/]+)/";
+        $matches = [];
+        if (preg_match_all($pattern, $route, $matches)) {
+            $updateRoute = array_reduce($matches[1], function ($acc, $value) {
+                $group = "(?P<$value>[\w]+)";
+                return str_replace(":{$value}", $group, $acc);
+            }, $route);
+        }
+        return $updateRoute;
+    }
     
     public function run()
     {
